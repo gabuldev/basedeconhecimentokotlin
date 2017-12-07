@@ -179,7 +179,7 @@ fun manipula_dados(id : Int,docentes : ArrayList<Docentes>,disciplina : ArrayLis
         }
         cursos.get(curso!![0].toString().toInt()).addProfessor(docentes.get(prof[0].toString().toInt()).nome.toString())
         disciplina.get(disc!![0].toString().toInt()).addProfessores(docentes.get(prof[0].toString().toInt()).nome.toString())
-        docentes.get(prof[0].toString().toInt()).curso = curso?.get(curso[0].toString().toInt())
+        docentes.get(prof[0].toString().toInt()).curso = cursos?.get(curso[0].toString().toInt()).nome
         docentes.get(prof[0].toString().toInt()).addDisciplinas(disciplina.get(disc!![0].toString().toInt()))
         println("Operacao realizada com sucesso")
     }
@@ -244,6 +244,7 @@ fun exibe_dados(id : Int,docentes : ArrayList<Docentes>,disciplina : ArrayList<D
 
     //LETRA E
     else if(id == 3 ){
+        var string : String = ""
         println("Selecione um professor: ")
         print("Professores: ")
         for(i in 0 until docentes.size){
@@ -260,6 +261,9 @@ fun exibe_dados(id : Int,docentes : ArrayList<Docentes>,disciplina : ArrayList<D
         cmd = readLine()!!.split(' ')
 
         println("Os alunos sao: ")
-        println(docentes.get(prof[0].toString().toInt()).disciplinas.get(cmd.toString().toInt()).alunos)
+        for(i in 0 until docentes.get(prof[0].toString().toInt()).disciplinas.get(cmd[0].toString().toInt()).alunos!!.size){
+            string += " " + docentes.get(prof[0].toString().toInt()).disciplinas.get(cmd[0].toString().toInt()).alunos?.get(i)!!.nome.toString() + " ; "
+        }
+        println(string)
     }
 }
